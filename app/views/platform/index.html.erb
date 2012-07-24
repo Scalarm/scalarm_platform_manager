@@ -1,0 +1,36 @@
+<section id="main">
+  <article>
+    <h3>Platform Information</h3>
+    Currently you have <%= @status_information["node_managers_size"] %> Node Managers registered.<br/>
+    <%= @status_information["experiment_managers_installations"] %> of them is running 
+    <%= @status_information["experiment_managers_instances"] %> instances of Scalarm Experiment Manager.<br/>
+  </article>
+  <article>
+    <h3>Global actions</h3>
+
+    <div class="buttons">
+      <%= link_to "Synchronize with the Information Service", platform_synchronize_with_information_service_path %>
+      <%= link_to "Install experiment manager on all node managers", "/platform/global_install_manager/experiment" %>
+      <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+
+      <div class="buttonset">
+        <%= link_to "Start experiment manager on all node managers", "/platform/global_start_manager/experiment/8" %>
+        <%= link_to "Stop experiment manager on all node managers", "/platform/global_stop_manager/experiment/8" %>    
+        <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+      </div>
+    </div>
+    
+  </article>
+
+  <article>
+    <h3>Registered Node Managers</h3>
+    <div id="node_managers_accordion">
+      <%= render :partial => "node_manager", :collection => @node_managers %>
+    </div>
+
+    <%= javascript_tag "$(document).ready(function() { $( '#node_managers_accordion' ).accordion(); })" %>
+  </article>
+</section>
+
+<%= javascript_tag "$(document).ready(function() { $('.buttons a').button(); $( '.buttonset' ).buttonset(); 
+                    $('.buttons a, .buttonset a').click(function() { $(this).next('.spinner').show() })})" %>

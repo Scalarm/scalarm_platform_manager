@@ -1,0 +1,11 @@
+# port for the platform manager web server
+port: 13200
+login: eusas
+password: hidden
+# information about the information service
+information_service_url: localhost:11200
+information_service_login: eusas
+information_service_password: hidden
+# credential for accessing node managers
+node_manager_login: eusas
+node_manager_password: hidden
