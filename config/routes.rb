@@ -13,7 +13,12 @@ ScalarmPlatformManager::Application.routes.draw do
   match "platform/global_install_manager/:manager_type" => 'platform#global_install_manager'
   match "platform/global_start_manager/:manager_type/:number" => 'platform#global_start_manager'
   match "platform/global_stop_manager/:manager_type/:number" => 'platform#global_stop_manager'
-  #match "platform/start_experiment_manager/:manager_uri" => 'platform/start_experiment_manager'
+
+  # monitoring controller
+  match "monitoring" => "monitoring#index"
+  get "monitoring/index"
+  post "monitoring/monitor"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

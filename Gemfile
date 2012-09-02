@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'execjs'
 
 gem 'therubyracer'
+gem 'mongo'
+gem 'bson_ext'
 
 
 

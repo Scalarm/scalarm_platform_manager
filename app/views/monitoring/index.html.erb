@@ -1,0 +1,51 @@
+<section id="main">
+  <%= form_tag(monitoring_monitor_path) do %>
+    <article>
+      <h3>Monitoring options</h3>
+      Start date: <%= text_field_tag "monitoring_period_start" %> -
+      Hour: <%= select_tag "monitoring_period_start_time", options_for_select(hour_options) %><br />
+
+      &nbsp;&nbsp;End date: <%= text_field_tag "monitoring_period_end" %> -
+      Hour: <%= select_tag "monitoring_period_end_time", options_for_select(hour_options) %><br />
+
+      Time resolution: <%= select_tag "time_resolution", options_for_select(time_resolution_options) %><br />
+    </article>
+
+    <article>
+      <h3>Monitored hosts with Node Manager installed</h3>
+        <div id="monitored_hosts_accordion">
+          <%= render :partial => "monitored_host", :collection => @measurements.keys %>
+        </div>
+    </article>
+    <article>
+      <h3>Actions</h3>
+      <%= submit_tag "Submit" %>
+    </article>
+  <% end %>
+</section>
+
+<script>
+  $(function() {
+    $( "#monitoring_period_start" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      dateFormat: "yy-mm-dd",
+      onSelect: function( selectedDate ) {
+        $( "#monitoring_period_end" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#monitoring_period_end" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      dateFormat: "yy-mm-dd",
+      onSelect: function( selectedDate ) {
+        $( "#monitoring_period_start" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+</script>
+
+<%= javascript_tag "$( '#monitored_hosts_accordion' ).accordion({ autoHeight: false });" %>
+<%= javascript_tag "$( 'input:submit' ).button();" %>

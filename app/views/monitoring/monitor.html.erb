@@ -1,0 +1,19 @@
+<%=  javascript_include_tag "highcharts" %>
+
+<section id="main">
+  <article>
+    <h3>Actions</h3>
+
+    <div class="buttons">
+      <%= link_to_function "Refresh", "window.location.reload()" %>
+    </div>
+  </article>
+
+  <article>
+    <h3>Monitoring charts</h3>
+
+    <%= render :partial => "monitoring_chart", :collection => @chart_data.keys %>
+  </article>
+</section>
+
+<%= javascript_tag "$( '.buttons a' ).button();" %>

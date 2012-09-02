@@ -13,12 +13,12 @@ header, footer, section, aside, nav, article {
 
 body {
     line-height: 1;
-    background: #3384BB url(../images/bg.jpg) repeat;
+    background: #3384BB url('/assets/bg.jpg') repeat;
     color: #555;
     font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
-	
+
 /* layout */
 
 #wrapper {
@@ -153,7 +153,7 @@ line-height: 1.5em;
 	color: #ff6f39;
 	margin: 5px 0 5px 0;
 	font-size: 14px;
-	line-height: 1.5em;	
+	line-height: 1.5em;
 }
 
 #main h3 {
@@ -180,7 +180,7 @@ margin-left: 20px;
 
 blockquote {
 padding-left: 40px;
-background: transparent url(images/openquotes.png) no-repeat;
+background: transparent url('/assets/openquotes.png') no-repeat;
 font-style: italic;
 }
 
@@ -327,23 +327,23 @@ input[type="text"], input[type="password"], textarea
 .LV_valid {
     color:#00CC00;
 }
-	
+
 .LV_invalid {
     color:#CC0000;
 }
-    
+
 .LV_valid_field,
-input.LV_valid_field:hover, 
+input.LV_valid_field:hover,
 input.LV_valid_field:active,
-textarea.LV_valid_field:hover, 
+textarea.LV_valid_field:hover,
 textarea.LV_valid_field:active {
     border: 1px solid #00CC00;
 }
-    
-.LV_invalid_field, 
-input.LV_invalid_field:hover, 
+
+.LV_invalid_field,
+input.LV_invalid_field:hover,
 input.LV_invalid_field:active,
-textarea.LV_invalid_field:hover, 
+textarea.LV_invalid_field:hover,
 textarea.LV_invalid_field:active {
     border: 1px solid #CC0000;
 }

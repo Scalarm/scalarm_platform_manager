@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
       username == config["login"] && password == config["password"]
     end
   end
+
+  def map_to_string(hash_map)
+    hash_map.map{|k,v| "#{k}=#{v}"}.join('&')
+  end
+
 end

@@ -1,14 +1,2 @@
-=== Scalarm Platform Manager ===
-TODO - application description
-
-==== Config ====
-
-config/platform_manager_config.yml - main configuration file for this app
-
-==== Running ====
-
-You have to have Ruby interpreter set. We test the app with ruby 1.9.3.
-
-rvm use 1.9.3
-cd scalarm_platform_manager
-ruby scalarm_platform_manager (start|stop)
+Use this README file to introduce your application and point to useful places in the API for learning more.
+Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.

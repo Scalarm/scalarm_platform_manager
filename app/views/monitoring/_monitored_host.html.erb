@@ -1,0 +1,18 @@
+<h3>
+  <a href="#">
+    Monitored Host IP: <%= monitored_host.gsub("_", ".") %>
+  </a>
+</h3>
+<div>
+  <% grouped_measurements = @measurements[monitored_host].group_by{|table_name| table_name.split("___")[0..1].join("___") } %>
+  <% grouped_measurements.each do |element_name, tables| %>
+    <% element_type, element_id = element_name.split("___") %>
+    <h4><%= element_type %> <%= "- #{element_id}" if element_id != "NULL" %> :</h4>
+
+    <% tables.each do |table_name| %>
+      <%= check_box_tag "#{monitored_host}.#{table_name}" %>
+      <%= table_name.split("___")[-1] %>
+      <br/>
+    <% end %>
+  <% end %>
+</div>

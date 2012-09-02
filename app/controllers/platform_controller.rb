@@ -13,6 +13,8 @@ class PlatformController < ApplicationController
   end
 
   def synchronize_with_information_service
+    NodeManager.delete_all
+
     @information_service.list_of_node_managers.each do |node_manager_desc|
       node_manager_desc = node_manager_desc.split("---")
       manager_uri = node_manager_desc[0]
@@ -50,25 +52,25 @@ class PlatformController < ApplicationController
 
   def global_install_manager
     NodeManager.all.each do |node_manager|
-      node_manager.install(params[:manager_type], @config)  
+      node_manager.install(params[:manager_type], @config)
     end
-    
+
     redirect_to :action => :index
   end
 
   def global_start_manager
     NodeManager.all.each do |node_manager|
-      node_manager.start(params[:manager_type], params[:number], @config)  
+      node_manager.start(params[:manager_type], params[:number], @config)
     end
-    
+
     redirect_to :action => :index
   end
 
   def global_stop_manager
     NodeManager.all.each do |node_manager|
-      node_manager.stop(params[:manager_type], params[:number], @config)  
+      node_manager.stop(params[:manager_type], params[:number], @config)
     end
-    
+
     redirect_to :action => :index
   end
 
@@ -93,19 +95,31 @@ class PlatformController < ApplicationController
 
     experiment_managers_installations = 0
     experiment_managers_instances = 0
+    storage_managers_installations = 0
 
     @node_managers.each do |node_manager|
       experiment_manager_status = node_manager.manager_status("experiment", 8, @config)
+
       if experiment_manager_status != "not running"
         experiment_managers_installations += 1
         experiment_managers_instances += experiment_manager_status.split(" ")[0].to_i
       end
 
       status_info[node_manager.uri] = experiment_manager_status
+
+      storage_manager_status = node_manager.manager_status("storage", 1, @config)
+
+      if storage_manager_status != "not running"
+        storage_managers_installations += 1
+      end
+
+      status_info["storage_#{node_manager.uri}"] = storage_manager_status
     end
 
     status_info["experiment_managers_installations"] = experiment_managers_installations
     status_info["experiment_managers_instances"] = experiment_managers_instances
+
+    status_info["storage_managers_installations"] = storage_managers_installations
 
     return status_info
   end
