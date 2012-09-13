@@ -78,6 +78,7 @@ class MonitoringController < ApplicationController
                     ).to_a.map{|doc|
                     [ string_to_time(doc["date"]).to_i, doc["value"].to_f ] }
 
+    return [] if metric_values.nil? or metric_values.empty?
     # logger.info(metric_values.map{|x| x[0]}.join(","))
 
     grouped_values, measurements_from_time_period = [], []
