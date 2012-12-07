@@ -13,6 +13,8 @@ ScalarmPlatformManager::Application.routes.draw do
   match "platform/global_install_manager/:manager_type" => 'platform#global_install_manager'
   match "platform/global_start_manager/:manager_type/:number" => 'platform#global_start_manager'
   match "platform/global_stop_manager/:manager_type/:number" => 'platform#global_stop_manager'
+  
+  post "platform/custom_start_managers"
 
   # monitoring controller
   match "monitoring" => "monitoring#index"

@@ -37,6 +37,25 @@
         <%= link_to "Stop storage manager on all node managers", "/platform/global_stop_manager/storage/1" %>
         <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
       </div>
+      <br/>
+      
+      <%= link_to "Install simulation managers on all nodes", "/platform/global_install_manager/simulation" %>
+      <div class="buttonset">
+        <%= link_to "Start simulation managers on all nodes", "/platform/global_start_manager/simulation/1" %>
+        <%= link_to "Stop simulation managers on all nodes", "/platform/global_stop_manager/simulation/1" %>
+        <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+      </div>
+      <br/>
+      
+      <div class="buttonset">
+      	<%= form_tag(platform_custom_start_managers_path) do -%>
+      		Number of Experiment Managers to start:
+      		<%= text_field_tag "experiment_managers_count" %><br/>
+      		Number of Storage Managers to start:
+      		<%= text_field_tag "storage_managers_count" %><br/>
+      		<%= submit_tag "Start" %>
+      	<% end -%>
+      </div>
     </div>
 
   </article>

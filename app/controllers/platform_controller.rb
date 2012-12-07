@@ -80,6 +80,28 @@ class PlatformController < ApplicationController
 
     redirect_to :action => :index
   end
+  
+  def custom_start_managers
+    experiment_managers_count = params[:experiment_managers_count].to_i
+    storage_managers_count = params[:storage_managers_count].to_i
+    
+    NodeManager.all.each do |node_manager|
+      break if (experiment_managers_count <= 0) and (storage_managers_count <= 0)
+      
+      if experiment_managers_count > 0
+        no_managers_to_start = [8, experiment_managers_count].min
+        node_manager.start("experiment", no_managers_to_start, @config)
+        experiment_managers_count -= no_managers_to_start  
+      end
+      
+      if storage_managers_count > 0
+        node_manager.start("storage", 1, @config)
+        storage_managers_count -= 1  
+      end
+    end 
+    
+    redirect_to :action => :index
+  end
 
 
   private

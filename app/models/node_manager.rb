@@ -47,7 +47,7 @@ class NodeManager < ActiveRecord::Base
     snm_server, snm_port = self.uri.split(":")
 
     http = Net::HTTP.new(snm_server, snm_port.to_i)
-    http.read_timeout = 3600
+    http.read_timeout = 20
     req = Net::HTTP::Get.new(path)
     Rails.logger.debug("Sending: http://#{snm_server}:#{snm_port}#{path}")
 

@@ -4,9 +4,9 @@ module MonitoringHelper
     [
         ["30 sec", "30"],
         ["1 min", "60"],
-        ["5 min", "300"],
         ["30 min", "1800"],
-        ["1 h", "3600"]
+        ["1 h", "3600"],
+        ["5 min", "300"]
     ].reverse
   end
 

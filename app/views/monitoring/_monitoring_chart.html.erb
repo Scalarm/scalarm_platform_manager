@@ -1,5 +1,4 @@
 
 <div id="chart_container_<%= monitoring_chart %>"></div>
-<%= javascript_tag "$(document).ready(function() {
-      init_monitoring_chart('#{monitoring_chart}', [ #{@chart_data[monitoring_chart]} ] );
-    });" %>
+
+<%= javascript_tag "init_monitoring_chart('#{monitoring_chart}', [ #{@chart_data[monitoring_chart]} ] );" %>

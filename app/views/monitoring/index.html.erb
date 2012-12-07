@@ -2,10 +2,10 @@
   <%= form_tag(monitoring_monitor_path) do %>
     <article>
       <h3>Monitoring options</h3>
-      Start date: <%= text_field_tag "monitoring_period_start" %> -
+      Start date: <%= text_field_tag "monitoring_period_start", Time.now.strftime("%Y-%m-%d") %> -
       Hour: <%= select_tag "monitoring_period_start_time", options_for_select(hour_options) %><br />
 
-      &nbsp;&nbsp;End date: <%= text_field_tag "monitoring_period_end" %> -
+      &nbsp;&nbsp;End date: <%= text_field_tag "monitoring_period_end", (Time.now + 1.day).strftime("%Y-%m-%d") %> -
       Hour: <%= select_tag "monitoring_period_end_time", options_for_select(hour_options) %><br />
 
       Time resolution: <%= select_tag "time_resolution", options_for_select(time_resolution_options) %><br />
