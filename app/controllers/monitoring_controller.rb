@@ -28,6 +28,12 @@ class MonitoringController < ApplicationController
     end
   end
 
+  def start_monitoring
+    params[:action] = :monitor
+
+    redirect_to(params)
+  end
+
   def monitor
     parse_monitoring_options
     @metrics = {}

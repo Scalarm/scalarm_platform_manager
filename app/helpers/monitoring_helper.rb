@@ -20,4 +20,12 @@ module MonitoringHelper
     hours
   end
 
+  def refresh_action
+    #action_body = "$.ajax({ '#{monitoring_monitor_path}', "
+    #action_body += "data:  "
+
+    #action_body + "});"
+    "window.location.href = window.location.href + '&reload=1';"
+  end
+
 end

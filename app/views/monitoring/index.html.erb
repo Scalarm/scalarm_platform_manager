@@ -1,5 +1,5 @@
 <section id="main">
-  <%= form_tag(monitoring_monitor_path) do %>
+  <%= form_tag(monitoring_start_monitoring_path) do %>
     <article>
       <h3>Monitoring options</h3>
       Start date: <%= text_field_tag "monitoring_period_start", Time.now.strftime("%Y-%m-%d") %> -

@@ -19,7 +19,8 @@ ScalarmPlatformManager::Application.routes.draw do
   # monitoring controller
   match "monitoring" => "monitoring#index"
   get "monitoring/index"
-  post "monitoring/monitor"
+  post "monitoring/start_monitoring"
+  get "monitoring/monitor"
 
   match "scaling_rules" => "scaling_rules#index"
   post "scaling_rules/create_new"
