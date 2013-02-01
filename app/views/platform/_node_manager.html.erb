@@ -41,6 +41,23 @@
       <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
     </div>
 
+    <div class="buttonset" style="display: inline;">
+      <%= link_to "Start db config service", "/platform/start_manager/#{node_manager.uri_to_request}/storage_db_config/1" %>
+      <%= link_to "Stop db config service", "/platform/stop_manager/#{node_manager.uri_to_request}/storage_db_config/1" %>
+      <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+    </div>
+
+    <div class="buttonset" style="display: inline;">
+      <%= link_to "Start db instance", "/platform/start_manager/#{node_manager.uri_to_request}/storage_db_instance/1" %>
+      <%= link_to "Stop db instance", "/platform/stop_manager/#{node_manager.uri_to_request}/storage_db_instance/1" %>
+      <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+    </div>
+
+    <div class="buttonset" style="display: inline;">
+      <%= link_to "Start db router", "/platform/start_manager/#{node_manager.uri_to_request}/storage_db_router/1" %>
+      <%= link_to "Stop db router", "/platform/stop_manager/#{node_manager.uri_to_request}/storage_db_router/1" %>
+      <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+    </div>
   </article>
 
   <article>

@@ -11,6 +11,11 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'mongo'
 gem 'bson_ext'
+gem 'thin'
+gem "spawn", :git => 'git://github.com/rfc2822/spawn'
+
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 
 

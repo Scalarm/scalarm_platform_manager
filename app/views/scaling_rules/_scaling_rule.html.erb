@@ -1,0 +1,42 @@
+<article>
+  <div>
+    <%= button_to "Delete rule", {:action => "delete_rule", :scaling_rule_id => scaling_rule.id} %>
+  </div>
+
+  <div>
+    <label>Summary:</label>
+    <%=  scaling_rule.as_string %>
+  </div>
+
+  <div>
+    <label>Metric name:</label>
+    <%= scaling_rule.metric_name %>
+  </div>
+
+  <div>
+    <label>Measurement type:</label>
+    <%= scaling_rule.measurement_type %>
+  </div>
+
+  <% if scaling_rule.measurement_type == "time_window" %>
+    <div>
+        <label>Time window:</label>
+        <%= scaling_rule.time_window_length %> [<%= scaling_rule.time_window_length_unit %>]
+    </div>
+  <% end  %>
+
+  <div>
+    <label>Condition:</label>
+    <%= scaling_rule.condition %>
+  </div>
+
+  <div>
+    <label>Threshold:</label>
+    <%= scaling_rule.threshold %>
+  </div>
+
+  <div>
+    <label>Action:</label>
+    <%= scaling_rule.action %>
+  </div>
+</article>

@@ -1,3 +1,5 @@
+require "net/http"
+
 class NodeManager < ActiveRecord::Base
 
   def install(manager_type, config)
@@ -30,7 +32,7 @@ class NodeManager < ActiveRecord::Base
         return "not running"
       end
 
-    elsif manager_type == "storage"
+    elsif manager_type.include? "storage"
 
       if not response.nil? and (response.empty? or response.include?("not running"))
         return "not running"
@@ -39,6 +41,37 @@ class NodeManager < ActiveRecord::Base
       end
 
     end
+  end
+
+  def self.find_one_without(manager_type = nil)
+    manager_types = manager_type.nil? ? [ "experiment", "storage_db_config", "storage_db_instance" ] : manager_type
+    config = YAML.load_file(File.join(Rails.root, "config", "platform_manager_config.yml"))
+
+    NodeManager.all.each do |node_manager|
+      any_manager_running = false
+      manager_types.each do |type|
+        status = node_manager.manager_status(type, 1, config)
+        Rails.logger.debug("Status: #{status}")
+        if status != "not running"
+          any_manager_running = true
+          break
+        end
+      end
+
+      return node_manager if not any_manager_running
+    end
+
+    nil
+  end
+
+  def self.find_one_with(manager_type)
+    config = YAML.load_file(File.join(Rails.root, "config", "platform_manager_config.yml"))
+
+    NodeManager.all.each do |node_manager|
+      return node_manager if node_manager.manager_status(manager_type, 1, config) != "not running"
+    end
+
+    nil
   end
 
   private

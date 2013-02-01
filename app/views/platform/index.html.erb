@@ -11,7 +11,13 @@
     </p>
 
     <p>
-      <%= @status_information["storage_managers_installations"] %> of them are running Scalarm Storage Managers. <br/>
+      <h3>Storage db config services</h3>
+      <%= @status_information["storage_db_config_services"] %>
+    </p>
+
+    <p>
+        <h3>Storage db instances</h3>
+        <%= @status_information["storage_db_instances"] %>
     </p>
   </article>
   <article>

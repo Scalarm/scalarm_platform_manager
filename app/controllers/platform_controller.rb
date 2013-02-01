@@ -143,6 +143,9 @@ class PlatformController < ApplicationController
 
     status_info["storage_managers_installations"] = storage_managers_installations
 
+    status_info["storage_db_config_services"] = @information_service.list_of_db_configs
+    status_info["storage_db_instances"] = @information_service.list_of_db_instances
+
     return status_info
   end
 

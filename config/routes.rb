@@ -21,6 +21,9 @@ ScalarmPlatformManager::Application.routes.draw do
   get "monitoring/index"
   post "monitoring/monitor"
 
+  match "scaling_rules" => "scaling_rules#index"
+  post "scaling_rules/create_new"
+  post "scaling_rules/delete_rule"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
