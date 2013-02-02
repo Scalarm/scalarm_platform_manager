@@ -47,7 +47,7 @@ class NodeManager < ActiveRecord::Base
     manager_types = manager_type.nil? ? [ "experiment", "storage_db_config", "storage_db_instance" ] : manager_type
     config = YAML.load_file(File.join(Rails.root, "config", "platform_manager_config.yml"))
 
-    NodeManager.all.each do |node_manager|
+    NodeManager.where(:ignore => false).each do |node_manager|
       any_manager_running = false
       manager_types.each do |type|
         status = node_manager.manager_status(type, 1, config)
@@ -67,7 +67,7 @@ class NodeManager < ActiveRecord::Base
   def self.find_one_with(manager_type)
     config = YAML.load_file(File.join(Rails.root, "config", "platform_manager_config.yml"))
 
-    NodeManager.all.each do |node_manager|
+    NodeManager.where(:ignore => false).each do |node_manager|
       return node_manager if node_manager.manager_status(manager_type, 1, config) != "not running"
     end
 

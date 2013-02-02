@@ -1,9 +1,15 @@
 <h3>
 	<a href="#">
-		Node Manager IP: <%= node_manager.uri %>
+	  Node Manager IP: <%= node_manager.uri %>
+      <% if node_manager.ignore %>
+        - this manager will be ignored when scaling
+      <% else %>
+        - this manager will be used when scaling
+      <% end %>
 	</a>
 </h3>
 <div style="min-height: 200px;">
+
   <article>
     <h3>Experiment managers: <%= @status_information[node_manager.uri] %></h3>
     <div class="buttons" style="display: inline;">
@@ -64,7 +70,15 @@
     <h3>Other actions</h3>
     <div class="buttons">
       <%= link_to "Delete node manager from the view", "/platform/delete_manager/#{node_manager.uri_to_request}" %>
+
+      <% if node_manager.ignore %>
+        <%= link_to "Include when scaling", ignore_manager_when_scale_path(:node_manager_id => node_manager.id, :ignore => false), :method => :post %>
+      <% else %>
+        <%= link_to "Exclude when scaling", ignore_manager_when_scale_path(:node_manager_id => node_manager.id, :ignore => true), :method => :post %>
+      <% end %>
+
       <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
     </div>
   </article>
+
 </div>

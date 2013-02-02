@@ -103,6 +103,15 @@ class PlatformController < ApplicationController
     redirect_to :action => :index
   end
 
+  def ignore_when_scale
+    # set ignore when applying scaling rule flag for chosen node manager
+    node_manager = NodeManager.find(params[:node_manager_id])
+    node_manager.ignore = params[:ignore]
+    node_manager.save
+
+    redirect_to :action => :index
+  end
+
 
   private
 

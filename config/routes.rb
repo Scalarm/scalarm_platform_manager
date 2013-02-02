@@ -16,6 +16,8 @@ ScalarmPlatformManager::Application.routes.draw do
   
   post "platform/custom_start_managers"
 
+  post "platform/ignore_when_scale" => "platform#ignore_when_scale", :as => :ignore_manager_when_scale
+
   # monitoring controller
   match "monitoring" => "monitoring#index"
   get "monitoring/index"

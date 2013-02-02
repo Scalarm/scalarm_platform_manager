@@ -79,9 +79,8 @@ class MonitoringController < ApplicationController
 
   def measurements_for(metric_name)
     metric_values = @monitoring_db[metric_name].find(date_find_conditions,
-                      {:sort => ["date", :ascending],
-                       :fields => {"_id" => 0, "date" => 1, "value" => 1}}
-                    ).to_a.map{|doc|
+                      { :fields => { "_id" => 0, "date" => 1, "value" => 1 } }
+                    ).to_a.sort_by{|a| a["data"]}.map{|doc|
                     [ string_to_time(doc["date"]).to_i, doc["value"].to_f ] }
 
     return [] if metric_values.nil? or metric_values.empty?
