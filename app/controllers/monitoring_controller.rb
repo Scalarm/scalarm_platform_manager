@@ -42,7 +42,7 @@ class MonitoringController < ApplicationController
       next if (param_name =~ MonitoringController::MONITORING_TABLE_PATTERN).nil?
 
       @metrics[param_name] = measurements_for param_name
-      logger.debug("Metric measurements for #{param_name}: #{@metrics[param_name]}")
+      #logger.debug("Metric measurements for #{param_name}: #{@metrics[param_name]}")
     end
 
     @grouped_metrics = @metrics.keys.group_by do |metric_name|
@@ -50,7 +50,7 @@ class MonitoringController < ApplicationController
       "#{splitted[0]}___#{splitted[2]}"
     end
 
-    logger.debug("Grouped metrics: #{map_to_string(@grouped_metrics)}")
+    #logger.debug("Grouped metrics: #{map_to_string(@grouped_metrics)}")
 
     @chart_data = {}
     @grouped_metrics.each do |metric_name, metric_list|

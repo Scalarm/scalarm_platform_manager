@@ -1,0 +1,30 @@
+<article>
+  <h3>Platform Information</h3>
+
+  <p>
+    Currently you have <%= @status_information["node_managers_size"] %> Node Managers registered.
+  </p>
+
+  <p>
+    <%= @status_information["experiment_managers_installations"] %> of them are running
+    <%= @status_information["experiment_managers_instances"] %> instances of Scalarm Experiment Manager.
+  </p>
+
+  <p>
+    <h4>Storage db config services</h4>
+    <ul>
+      <% @status_information["storage_db_config_services"].each do |config_ip| %>
+        <%= content_tag :li, config_ip %>
+      <% end %>
+    </ul>
+  </p>
+
+  <p>
+    <h4>Storage db instances</h4>
+    <ul>
+      <% @status_information["storage_db_instances"].each do |db_ip| %>
+        <%= content_tag :li, db_ip %>
+      <% end %>
+    </ul>
+  </p>
+</article>

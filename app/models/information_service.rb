@@ -31,13 +31,16 @@ class InformationService
     req.basic_auth @config["information_service_login"], @config["information_service_password"]
     begin
       response = http.request(req)
-      return response.body
+
+      config_services = response.body.split("|||").map{|config_uri| config_uri.split(":").first}
+
+      return config_services
     rescue Exception => e
       logger.error("Could not connect to the Information Service")
       logger.error(e.message)
     end
 
-    return ""
+    return []
   end
 
   def list_of_db_instances
@@ -49,13 +52,14 @@ class InformationService
     req.basic_auth @config["information_service_login"], @config["information_service_password"]
     begin
       response = http.request(req)
-      return response.body
+      list_of_instances = response.body.split("|||").map{|db_uri| db_uri.split(":").first}
+
+      return list_of_instances
     rescue Exception => e
       logger.error("Could not connect to the Information Service")
       logger.error(e.message)
     end
 
-    return ""
-
+    []
   end
 end

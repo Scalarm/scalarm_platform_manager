@@ -1,25 +1,7 @@
 <section id="main">
-  <article>
-    <h3>Platform Information</h3>
-    <p>
-      Currently you have <%= @status_information["node_managers_size"] %> Node Managers registered.
-    </p>
 
-    <p>
-      <%= @status_information["experiment_managers_installations"] %> of them are running
-      <%= @status_information["experiment_managers_instances"] %> instances of Scalarm Experiment Manager.
-    </p>
+  <%= render :partial => "platform_information" %>
 
-    <p>
-      <h3>Storage db config services</h3>
-      <%= @status_information["storage_db_config_services"] %>
-    </p>
-
-    <p>
-        <h3>Storage db instances</h3>
-        <%= @status_information["storage_db_instances"] %>
-    </p>
-  </article>
   <article>
     <h3>Global actions</h3>
 
@@ -72,7 +54,7 @@
       <%= render :partial => "node_manager", :collection => @node_managers %>
     </div>
 
-    <%= javascript_tag "$(document).ready(function() { $( '#node_managers_accordion' ).accordion({ autoHeight: false }); })" %>
+    <%= javascript_tag "$(document).ready(function() { $( '#node_managers_accordion' ).accordion({ autoHeight: false, collapsible: true }); })" %>
   </article>
 </section>
 

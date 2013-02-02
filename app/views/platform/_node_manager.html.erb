@@ -29,12 +29,17 @@
       <%= link_to "Stop 8 experiment managers", "/platform/stop_manager/#{node_manager.uri_to_request}/experiment/8" %>
       <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
     </div>
-
-
   </article>
 
   <article>
-    <h3>Storage manager: <%= @status_information["storage_#{node_manager.uri}"] %> </h3>
+    <h3>Storage manager:
+      <% if @status_information["storage_db_config_services"].include? node_manager.uri.split(":").first %>
+        Config service is running
+      <% end %>
+      <% if @status_information["storage_db_instances"].include? node_manager.uri.split(":").first %>
+        DB instance is running
+      <% end %>
+    </h3>
 
     <div class="buttons" style="display: inline;">
       <%= link_to "Install storage manager", "/platform/install_manager/#{node_manager.uri_to_request}/storage" %>
