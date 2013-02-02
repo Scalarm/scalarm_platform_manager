@@ -22,4 +22,14 @@ module PlatformHelper
         ["Simulation Manager", "simulation"],
     ]
   end
+
+  def local_manager_type_options
+    [
+        ["Experiment Manager", "experiment"],
+        ["Storage Manager - config service", "storage_db_config"],
+        ["Storage Manager - database instance", "storage_db_instance"],
+        ["Storage Manager - router", "storage_db_router"],
+        ["Simulation Manager", "simulation"],
+    ]
+  end
 end
