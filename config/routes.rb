@@ -5,14 +5,18 @@ ScalarmPlatformManager::Application.routes.draw do
   get "platform/synchronize_with_information_service"
 
   match "platform/install_manager/:manager_uri/:manager_type" => 'platform#install_manager'
+  post "platform/install_manager"
   match "platform/start_manager/:manager_uri/:manager_type/:number" => 'platform#start_manager'
   match "platform/stop_manager/:manager_uri/:manager_type/:number" => 'platform#stop_manager'
 
   match "platform/delete_manager/:manager_uri" => 'platform#delete_manager'
 
   match "platform/global_install_manager/:manager_type" => 'platform#global_install_manager'
+  get "platform/global_install_manager"
   match "platform/global_start_manager/:manager_type/:number" => 'platform#global_start_manager'
   match "platform/global_stop_manager/:manager_type/:number" => 'platform#global_stop_manager'
+  get "platform/global_start_manager"
+  get "platform/global_stop_manager"
   
   post "platform/custom_start_managers"
 

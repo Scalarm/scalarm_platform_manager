@@ -1,3 +1,18 @@
 // Place all the styles related to the platform controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.buttons {
+
+  div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  label {
+    line-height: 34px;
+    vertical-align: middle;
+  }
+
+}

@@ -11,30 +11,21 @@
       <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
       <br/>
 
-      <%= link_to "Install experiment manager on all node managers", "/platform/global_install_manager/experiment" %>
-      <div class="buttonset">
-        <%= link_to "Start experiment manager on all node managers", "/platform/global_start_manager/experiment/8" %>
-        <%= link_to "Stop experiment manager on all node managers", "/platform/global_stop_manager/experiment/8" %>
-        <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+      <div>
+        Install on all nodes
+        <%= select_tag "install_manager_type", options_for_select(manager_installation_options) %>
+        <%= link_to_function "Install", "window.executeInstallation('#{platform_global_install_manager_path}');" %>
       </div>
-      <br/>
 
-      <%= link_to "Install storage manager on all node managers", "/platform/global_install_manager/storage" %>
-      <div class="buttonset">
-        <%= link_to "Start storage manager on all node managers", "/platform/global_start_manager/storage/1" %>
-        <%= link_to "Stop storage manager on all node managers", "/platform/global_stop_manager/storage/1" %>
-        <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
+      <div>
+        <span>Execute</span>
+        <%= select_tag "global_action", options_for_select(global_action_options) %>
+        <span>of</span>
+        <%= select_tag "manager_type", options_for_select(manager_type_options) %>
+        <span>on all nodes</span>
+        <%= link_to_function "Execute", "window.execute('#{platform_global_start_manager_path}', '#{platform_global_stop_manager_path}');" %>
       </div>
-      <br/>
-      
-      <%= link_to "Install simulation managers on all nodes", "/platform/global_install_manager/simulation" %>
-      <div class="buttonset">
-        <%= link_to "Start simulation managers on all nodes", "/platform/global_start_manager/simulation/1" %>
-        <%= link_to "Stop simulation managers on all nodes", "/platform/global_stop_manager/simulation/1" %>
-        <%= image_tag "spinner.gif", :class => "spinner", :style => "display: none;" %>
-      </div>
-      <br/>
-      
+
       <div class="buttonset">
       	<%= form_tag(platform_custom_start_managers_path) do -%>
       		Number of Experiment Managers to start:
@@ -42,7 +33,7 @@
       		Number of Storage Managers to start:
       		<%= text_field_tag "storage_managers_count" %><br/>
       		<%= submit_tag "Start" %>
-      	<% end -%>
+      	<% end %>
       </div>
     </div>
 
