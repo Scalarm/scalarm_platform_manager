@@ -16,7 +16,7 @@ class ScalingRuleGuard
         when_to_awake = last_cool_down_period.end_date - Time.now
         
         Rails.logger.debug("ScalingRule[#{@scaling_rule.id}] guard: sleeping for #{when_to_awake} [s] due to cool down period")
-        sleep(Math.abs(when_to_awake).to_i)
+        sleep(when_to_awake.to_i)
       end
 
       break if ScalingRule.where("id" => @scaling_rule.id).count == 0
