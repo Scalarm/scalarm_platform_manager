@@ -14,7 +14,7 @@ class ScalingRulesController < ApplicationController
     rule.save
 
     engine = ScalingRuleEngine.new
-    engine.delay.spawn_scaling_rule_guard_for rule
+    engine.delay.spawn_scaling_rule_guard_for(rule)
 
     redirect_to :action => :index
   end

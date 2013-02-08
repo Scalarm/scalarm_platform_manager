@@ -15,7 +15,7 @@ class ScalingRuleEngine
     Rails.logger.debug("Execute Scaling action #{action_name}")
 
     action, manager_type, server_type = action_name.split("_")
-    manager_type == "storage_db_instance" if manager_type == "storage"
+    manager_type = "storage_db_instance" if manager_type == "storage"
 
     if action == "start"
       node_manager = NodeManager.find_one_without((server_type == "empty") ? nil : manager_type)
@@ -25,14 +25,20 @@ class ScalingRuleEngine
         Rails.logger.debug("Starting a new instance of #{manager_type} on #{node_manager.uri}")
         node_manager.start(manager_type, manager_type == "experiment" ? 8 : 1, CONFIG)
       end
+
+      not node_manager.nil?
+
     elsif action == "stop"
       node_manager = NodeManager.find_one_with(manager_type)
       if node_manager.nil?
         Rails.logger.debug("Couldn't find appropriate node manager to stop #{manager_type}")
+        false
       else
         Rails.logger.debug("Stopping an instance of #{manager_type} on #{node_manager.uri}")
         node_manager.stop(manager_type, manager_type == "experiment" ? 8 : 1, CONFIG)
       end
+
+      not node_manager.nil?
     end
   end
 
