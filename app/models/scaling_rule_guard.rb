@@ -21,7 +21,7 @@ class ScalingRuleGuard
 
       break if ScalingRule.where("id" => @scaling_rule.id).count == 0
 
-      if rule_condition_is_met
+      if rule_condition_is_met(last_cool_down_period)
         Rails.logger.debug("Guard of ScalingRule #{@scaling_rule.id}: rule condition is met")
         executed_success = ScalingRuleEngine.execute_scaling_action(@scaling_rule.action)
         cool_down(@scaling_rule) if executed_success
@@ -33,8 +33,12 @@ class ScalingRuleGuard
     Rails.logger.debug("Guard of ScalingRule #{@scaling_rule.id}: quiting guarding")
   end
 
-  def rule_condition_is_met
+  def rule_condition_is_met(last_cool_down_period)
     monitoring_data = @monitoring.monitoring_data_for(@scaling_rule)
+    if last_cool_down_period != nil
+      monitoring_data.select!{|measurement| Time.parse(measurement["date"]) > last_cool_down_period.end_date }
+    end
+
     Rails.logger.debug("Monitoring data #{monitoring_data.inspect}")
 
     value = if @scaling_rule.measurement_type == "simple"
